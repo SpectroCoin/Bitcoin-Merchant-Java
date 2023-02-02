@@ -154,14 +154,14 @@ public class SCMerchantClient {
 
 			Object payAmount = jsonObject.get("payAmount");
 			if (payAmount != null) {
-				response.setPayAmount(new BigDecimal(payAmount.toString()).setScale(8, RoundingMode.HALF_UP));
+				response.setPayAmount(new BigDecimal(payAmount.toString()).setScale(18, RoundingMode.HALF_UP));
 			}
 
 			response.setReceiveCurrency((String) jsonObject.get("receiveCurrency"));
 
 			Object receiveAmount = jsonObject.get("receiveAmount");
 			if (receiveAmount != null) {
-				response.setReceiveAmount(new BigDecimal(receiveAmount.toString()).setScale(8, RoundingMode.HALF_DOWN));
+				response.setReceiveAmount(new BigDecimal(receiveAmount.toString()).setScale(18, RoundingMode.HALF_DOWN));
 			}
 
 			response.setDepositAddress((String) jsonObject.get("depositAddress"));
