@@ -151,9 +151,19 @@ public class SCMerchantClient {
 			response.setOrderRequestId((Long) jsonObject.get("orderRequestId"));
 			response.setOrderId((String) jsonObject.get("orderId"));
 			response.setPayCurrency((String) jsonObject.get("payCurrency"));
-			response.setPayAmount(new BigDecimal(jsonObject.get("payAmount").toString()).setScale(8, RoundingMode.HALF_UP));
+
+			Object payAmount = jsonObject.get("payAmount");
+			if (payAmount != null) {
+				response.setPayAmount(new BigDecimal(payAmount.toString()).setScale(18, RoundingMode.HALF_UP));
+			}
+
 			response.setReceiveCurrency((String) jsonObject.get("receiveCurrency"));
-			response.setReceiveAmount(new BigDecimal(jsonObject.get("receiveAmount").toString()).setScale(8, RoundingMode.HALF_DOWN));
+
+			Object receiveAmount = jsonObject.get("receiveAmount");
+			if (receiveAmount != null) {
+				response.setReceiveAmount(new BigDecimal(receiveAmount.toString()).setScale(18, RoundingMode.HALF_DOWN));
+			}
+
 			response.setDepositAddress((String) jsonObject.get("depositAddress"));
 			response.setValidUntil((Long) jsonObject.get("validUntil"));
 			response.setRedirectUrl((String) jsonObject.get("redirectUrl"));
